@@ -108,6 +108,9 @@
              	localStorage.setItem('minerVal2', 0)
              	document.getElementById('minerVal2').textContent = Number(localStorage.getItem('minerVal2'));
              	
+             	localStorage.setItem('minerVal3', 0)
+             	document.getElementById('minerVal3<').textContent = Number(localStorage.getItem('minerVal3'));
+             	
              	localStorage.setItem('upgradeMiner', 200)
              	document.getElementById('price-buy-miner').textContent = Number(localStorage.getItem('upgradeMiner'));
              	
@@ -282,11 +285,11 @@
          <div class="accordion mt-3" id="accordionExample">
             <div class="accordion-item">
                <h2 class="accordion-header" id="headingOne">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                   Click-Upgrades
                   </button>
                </h2>
-               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+               <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne">
                   <div class="accordion-body">
                      <div class="row mt-4">
                         <div class="col">
@@ -329,7 +332,7 @@
                   Miner-Upgrades
                   </button>
                </h2>
-               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo">
                   <div class="accordion-body">
                      <div class="row">
                         <div class="col">
@@ -392,7 +395,7 @@
          <br>
          <hr>
          <h3 class="mt-5">Verwalten</h3>
-         <div class="card text-center">
+         <div class="card text-center mt-5">
             <div class="card-header">
                Zurücksetzen
             </div>
