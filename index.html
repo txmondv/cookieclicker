@@ -30,12 +30,20 @@
          			localStorage.setItem('upgrade2Price', 500)
          		}
          		
+         		if(localStorage.getItem('upgrade3Price') == null) {
+         			localStorage.setItem('upgrade3Price', 2500)
+         		}
+         		
          		if(localStorage.getItem('minerVal') == null) {
          			localStorage.setItem('minerVal', 0)
          		}
          		
          		if(localStorage.getItem('minerVal2') == null) {
          			localStorage.setItem('minerVal2', 0)
+         		}
+         		
+         		if(localStorage.getItem('minerVal3') == null) {
+         			localStorage.setItem('minerVal3', 0)
          		}
          		
          		updateTextValues();        		
@@ -47,17 +55,23 @@
          		document.getElementById('upgradeVal').textContent = Number(localStorage.getItem('upgradeVal'));
          		document.getElementById('price-buy-1').textContent = Number(localStorage.getItem('upgrade1Price'));
          		document.getElementById('price-buy-2').textContent = Number(localStorage.getItem('upgrade2Price'));
+         		document.getElementById('price-buy-3').textContent = Number(localStorage.getItem('upgrade3Price'));
          		document.getElementById('minerVal').textContent = Number(localStorage.getItem('minerVal'));
          		document.getElementById('minerVal2').textContent = Number(localStorage.getItem('minerVal2'));
          		document.getElementById('price-buy-miner').textContent = Number(localStorage.getItem('upgradeMiner'));
          		document.getElementById('price-buy-miner2').textContent = Number(localStorage.getItem('upgradeMiner2'));
+         		document.getElementById('price-buy-miner3').textContent = Number(localStorage.getItem('upgradeMiner3'));
          		
-         		if(Number(localStorage.getItem('minerVal') >= 5)) {
+         		if(Number(localStorage.getItem('minerVal') >= 100)) {
          			document.getElementById('price-buy-miner').textContent = "Keine";
          		}
          		
-         		if(Number(localStorage.getItem('minerVal2') >= 5)) {
+         		if(Number(localStorage.getItem('minerVal2') >= 100)) {
          			document.getElementById('price-buy-miner2').textContent = "Keine";
+         		}
+         		
+         		if(Number(localStorage.getItem('minerVal3') >= 100)) {
+         			document.getElementById('price-buy-miner3').textContent = "Keine";
          		}
          	}
          	
@@ -85,6 +99,9 @@
              	localStorage.setItem('upgrade2Price', 500)
              	document.getElementById('price-buy-2').textContent = Number(localStorage.getItem('upgrade2Price'));
              	
+             	localStorage.setItem('upgrade3Price', 2500)
+             	document.getElementById('price-buy-3').textContent = Number(localStorage.getItem('upgrade3Price'));
+             	
              	localStorage.setItem('minerVal', 0)
              	document.getElementById('minerVal').textContent = Number(localStorage.getItem('minerVal'));
              	
@@ -96,6 +113,9 @@
              	
              	localStorage.setItem('upgradeMiner2', 5000)
              	document.getElementById('price-buy-miner2').textContent = Number(localStorage.getItem('upgradeMiner2'));
+             	
+             	localStorage.setItem('upgradeMiner3', 50000)
+             	document.getElementById('price-buy-miner3').textContent = Number(localStorage.getItem('upgradeMiner3'));
          	}  
          	
              $("#count-erhoehen").click(function() {
@@ -146,12 +166,27 @@
              	document.getElementById('upgradeVal').textContent = Number(localStorage.getItem('upgradeVal'));
              })
              
+             $("#buy-3").click(function() {
+             	if(Number(localStorage.getItem('score')) < Number(localStorage.getItem('upgrade3Price'))) {
+             		return;
+             	}
+             	
+                 localStorage.setItem('score', Number(document.getElementById('aaron').textContent) - Number(localStorage.getItem('upgrade3Price')));
+             	document.getElementById('aaron').textContent = Number(localStorage.getItem('score'));
+             
+             	localStorage.setItem('upgrade3Price', Number(localStorage.getItem('upgrade3Price')) + 3500);
+             	document.getElementById('price-buy-3').textContent = Number(localStorage.getItem('upgrade3Price'));
+             	
+                 localStorage.setItem('upgradeVal', Number(localStorage.getItem('upgradeVal')) + 30);
+             	document.getElementById('upgradeVal').textContent = Number(localStorage.getItem('upgradeVal'));
+             })
+             
              $("#buy-miner").click(function() {
              	if(Number(localStorage.getItem('score')) < Number(localStorage.getItem('upgradeMiner'))) {
              		return;
              	}
              	
-             	if(Number(localStorage.getItem('minerVal')) >= 5) {
+             	if(Number(localStorage.getItem('minerVal')) >= 100) {
              		return;
              	}
              	
@@ -170,7 +205,7 @@
              		return;
              	}
              	
-             	if(Number(localStorage.getItem('minerVal2')) >= 5) {
+             	if(Number(localStorage.getItem('minerVal2')) >= 100) {
              		return;
              	}
              	
@@ -184,12 +219,34 @@
              	document.getElementById('minerVal2').textContent = Number(localStorage.getItem('minerVal2'));
              })
              
+             $("#buy-miner3").click(function() {
+             	if(Number(localStorage.getItem('score')) < Number(localStorage.getItem('upgradeMiner3'))) {
+             		return;
+             	}
+             	
+             	if(Number(localStorage.getItem('minerVal3')) >= 100) {
+             		return;
+             	}
+             	
+                 localStorage.setItem('score', Number(document.getElementById('aaron').textContent) - Number(localStorage.getItem('upgradeMiner3')));
+             	document.getElementById('aaron').textContent = Number(localStorage.getItem('score'));
+             
+             	localStorage.setItem('upgradeMiner3', Number(localStorage.getItem('upgradeMiner3')) + 65000);
+             	document.getElementById('price-buy-miner3').textContent = Number(localStorage.getItem('upgradeMiner3'));
+             	
+                 localStorage.setItem('minerVal3', Number(localStorage.getItem('minerVal3')) + 1);
+             	document.getElementById('minerVal3').textContent = Number(localStorage.getItem('minerVal3'));
+             })
+             
              function yourFunction() {
                  updateScore(Number(localStorage.getItem('minerVal')));
                  updateTotalCookies(Number(localStorage.getItem('minerVal')));
                  
                  updateScore(Number(localStorage.getItem('minerVal2')) * 10);
                  updateTotalCookies(Number(localStorage.getItem('minerVal2')) * 10);
+                 
+                 updateScore(Number(localStorage.getItem('minerVal3')) * 50);
+                 updateTotalCookies(Number(localStorage.getItem('minerVal2')) * 50);
                  
                  updateTextValues();
                  
@@ -238,9 +295,19 @@
                <div class="card">
                   <div class="card-body">
                      <h5 class="card-title">Upgrade: 5 C/C</h5>
-                     <h6 class="card-subtitle mb-2 text-muted">+5 Cookie/Click</h6>
+                     <h6 class="card-subtitle mb-2 text-muted">+5 Cookies/Click</h6>
                      <p class="card-text">Preis: <span id="price-buy-2">500</span> Cookies</p>
                      <button type="button" class="btn btn-secondary" id="buy-2">Kaufen</button>
+                  </div>
+               </div>
+            </div>
+            <div class="col">
+               <div class="card">
+                  <div class="card-body">
+                     <h5 class="card-title">Upgrade: 30 C/C</h5>
+                     <h6 class="card-subtitle mb-2 text-muted">+30 Cookies/Click</h6>
+                     <p class="card-text">Preis: <span id="price-buy-3">2500</span> Cookies</p>
+                     <button type="button" class="btn btn-secondary" id="buy-3">Kaufen</button>
                   </div>
                </div>
             </div>
@@ -254,7 +321,7 @@
                      <h6 class="card-subtitle mb-2 text-muted">+1 Cookie per Level pro Sekunde</h6>
                      <p class="card-text">
                         Preis: <span id="price-buy-miner">1000</span> Cookies<br>
-                        Level: <span id="minerVal">0</span>/5
+                        Level: <span id="minerVal">0</span>/100
                      </p>
                      <button type="button" class="btn btn-secondary" id="buy-miner">Kaufen</button>
                   </div>
@@ -267,9 +334,22 @@
                      <h6 class="card-subtitle mb-2 text-muted">+10 Cookies per Level pro Sekunde</h6>
                      <p class="card-text">
                         Preis: <span id="price-buy-miner2">5000</span> Cookies<br>
-                        Level: <span id="minerVal2">0</span>/5
+                        Level: <span id="minerVal2">0</span>/100
                      </p>
                      <button type="button" class="btn btn-secondary" id="buy-miner2">Kaufen</button>
+                  </div>
+               </div>
+            </div>
+            <div class="col">
+               <div class="card">
+                  <div class="card-body">
+                     <h5 class="card-title">Miner: 50 C/L</h5>
+                     <h6 class="card-subtitle mb-2 text-muted">+50 Cookies per Level pro Sekunde</h6>
+                     <p class="card-text">
+                        Preis: <span id="price-buy-miner3">50000</span> Cookies<br>
+                        Level: <span id="minerVal3">0</span>/100
+                     </p>
+                     <button type="button" class="btn btn-secondary" id="buy-miner3">Kaufen</button>
                   </div>
                </div>
             </div>
