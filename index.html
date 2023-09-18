@@ -3,7 +3,7 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>TIMONS COOKIE CLICKER</title>
+      <title>Cookie Clicker</title>
       <link rel="stylesheet" href="css/style.css">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
       <script src="https://code.jquery.com/jquery-3.7.1.min.js" ></script>
@@ -108,13 +108,13 @@
              	localStorage.setItem('minerVal2', 0)
              	document.getElementById('minerVal2').textContent = Number(localStorage.getItem('minerVal2'));
              	
-             	localStorage.setItem('upgradeMiner', 1000)
+             	localStorage.setItem('upgradeMiner', 200)
              	document.getElementById('price-buy-miner').textContent = Number(localStorage.getItem('upgradeMiner'));
              	
-             	localStorage.setItem('upgradeMiner2', 5000)
+             	localStorage.setItem('upgradeMiner2', 2000)
              	document.getElementById('price-buy-miner2').textContent = Number(localStorage.getItem('upgradeMiner2'));
              	
-             	localStorage.setItem('upgradeMiner3', 50000)
+             	localStorage.setItem('upgradeMiner3', 15000)
              	document.getElementById('price-buy-miner3').textContent = Number(localStorage.getItem('upgradeMiner3'));
          	}  
          	
@@ -193,7 +193,7 @@
                  localStorage.setItem('score', Number(document.getElementById('aaron').textContent) - Number(localStorage.getItem('upgradeMiner')));
              	document.getElementById('aaron').textContent = Number(localStorage.getItem('score'));
              
-             	localStorage.setItem('upgradeMiner', Number(localStorage.getItem('upgradeMiner')) + 1000);
+             	localStorage.setItem('upgradeMiner', Number(localStorage.getItem('upgradeMiner')) + 100);
              	document.getElementById('price-buy-miner').textContent = Number(localStorage.getItem('upgradeMiner'));
              	
                  localStorage.setItem('minerVal', Number(localStorage.getItem('minerVal')) + 1);
@@ -212,7 +212,7 @@
                  localStorage.setItem('score', Number(document.getElementById('aaron').textContent) - Number(localStorage.getItem('upgradeMiner2')));
              	document.getElementById('aaron').textContent = Number(localStorage.getItem('score'));
              
-             	localStorage.setItem('upgradeMiner2', Number(localStorage.getItem('upgradeMiner2')) + 5000);
+             	localStorage.setItem('upgradeMiner2', Number(localStorage.getItem('upgradeMiner2')) + 1500);
              	document.getElementById('price-buy-miner2').textContent = Number(localStorage.getItem('upgradeMiner2'));
              	
                  localStorage.setItem('minerVal2', Number(localStorage.getItem('minerVal2')) + 1);
@@ -231,7 +231,7 @@
                  localStorage.setItem('score', Number(document.getElementById('aaron').textContent) - Number(localStorage.getItem('upgradeMiner3')));
              	document.getElementById('aaron').textContent = Number(localStorage.getItem('score'));
              
-             	localStorage.setItem('upgradeMiner3', Number(localStorage.getItem('upgradeMiner3')) + 65000);
+             	localStorage.setItem('upgradeMiner3', Number(localStorage.getItem('upgradeMiner3')) + 10000);
              	document.getElementById('price-buy-miner3').textContent = Number(localStorage.getItem('upgradeMiner3'));
              	
                  localStorage.setItem('minerVal3', Number(localStorage.getItem('minerVal3')) + 1);
@@ -279,84 +279,119 @@
          <hr>
          <br>
          <h3>Shop</h3>
-         <div class="row mt-4">
-            <h5>Click-Upgrades</h5>
-            <div class="col">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Upgrade: 1 C/C</h5>
-                     <h6 class="card-subtitle mb-2 text-muted">+1 Cookie/Click</h6>
-                     <p class="card-text">Preis: <span id="price-buy-1">50</span> Cookies</p>
-                     <button type="button" class="btn btn-secondary" id="buy-1">Kaufen</button>
+         <div class="accordion mt-3" id="accordionExample">
+            <div class="accordion-item">
+               <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Click-Upgrades
+                  </button>
+               </h2>
+               <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                     <div class="row mt-4">
+                        <div class="col">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h5 class="card-title">Upgrade: 1 C/C</h5>
+                                 <h6 class="card-subtitle mb-2 text-muted">+1 Cookie/Click</h6>
+                                 <p class="card-text">Preis: <span id="price-buy-1">50</span> Cookies</p>
+                                 <button type="button" class="btn btn-secondary" id="buy-1">Kaufen</button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h5 class="card-title">Upgrade: 5 C/C</h5>
+                                 <h6 class="card-subtitle mb-2 text-muted">+5 Cookies/Click</h6>
+                                 <p class="card-text">Preis: <span id="price-buy-2">500</span> Cookies</p>
+                                 <button type="button" class="btn btn-secondary" id="buy-2">Kaufen</button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h5 class="card-title">Upgrade: 30 C/C</h5>
+                                 <h6 class="card-subtitle mb-2 text-muted">+30 Cookies/Click</h6>
+                                 <p class="card-text">Preis: <span id="price-buy-3">2500</span> Cookies</p>
+                                 <button type="button" class="btn btn-secondary" id="buy-3">Kaufen</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
-            <div class="col">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Upgrade: 5 C/C</h5>
-                     <h6 class="card-subtitle mb-2 text-muted">+5 Cookies/Click</h6>
-                     <p class="card-text">Preis: <span id="price-buy-2">500</span> Cookies</p>
-                     <button type="button" class="btn btn-secondary" id="buy-2">Kaufen</button>
+            <div class="accordion-item">
+               <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Miner-Upgrades
+                  </button>
+               </h2>
+               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                     <div class="row">
+                        <div class="col">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h5 class="card-title">Miner: 1 C/L</h5>
+                                 <h6 class="card-subtitle mb-2 text-muted">+1 Cookie per Level pro Sekunde</h6>
+                                 <p class="card-text">
+                                    Preis: <span id="price-buy-miner">1000</span> Cookies<br>
+                                    Level: <span id="minerVal">0</span>/100
+                                 </p>
+                                 <button type="button" class="btn btn-secondary" id="buy-miner">Kaufen</button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h5 class="card-title">Miner: 10 C/L</h5>
+                                 <h6 class="card-subtitle mb-2 text-muted">+10 Cookies per Level pro Sekunde</h6>
+                                 <p class="card-text">
+                                    Preis: <span id="price-buy-miner2">5000</span> Cookies<br>
+                                    Level: <span id="minerVal2">0</span>/100
+                                 </p>
+                                 <button type="button" class="btn btn-secondary" id="buy-miner2">Kaufen</button>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col">
+                           <div class="card">
+                              <div class="card-body">
+                                 <h5 class="card-title">Miner: 50 C/L</h5>
+                                 <h6 class="card-subtitle mb-2 text-muted">+50 Cookies per Level pro Sekunde</h6>
+                                 <p class="card-text">
+                                    Preis: <span id="price-buy-miner3">50000</span> Cookies<br>
+                                    Level: <span id="minerVal3">0</span>/100
+                                 </p>
+                                 <button type="button" class="btn btn-secondary" id="buy-miner3">Kaufen</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                   </div>
                </div>
             </div>
-            <div class="col">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Upgrade: 30 C/C</h5>
-                     <h6 class="card-subtitle mb-2 text-muted">+30 Cookies/Click</h6>
-                     <p class="card-text">Preis: <span id="price-buy-3">2500</span> Cookies</p>
-                     <button type="button" class="btn btn-secondary" id="buy-3">Kaufen</button>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <h5 class="mt-4">Miner-Upgrades</h5>
-         <div class="row">
-            <div class="col">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Miner: 1 C/L</h5>
-                     <h6 class="card-subtitle mb-2 text-muted">+1 Cookie per Level pro Sekunde</h6>
-                     <p class="card-text">
-                        Preis: <span id="price-buy-miner">1000</span> Cookies<br>
-                        Level: <span id="minerVal">0</span>/100
-                     </p>
-                     <button type="button" class="btn btn-secondary" id="buy-miner">Kaufen</button>
-                  </div>
-               </div>
-            </div>
-            <div class="col">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Miner: 10 C/L</h5>
-                     <h6 class="card-subtitle mb-2 text-muted">+10 Cookies per Level pro Sekunde</h6>
-                     <p class="card-text">
-                        Preis: <span id="price-buy-miner2">5000</span> Cookies<br>
-                        Level: <span id="minerVal2">0</span>/100
-                     </p>
-                     <button type="button" class="btn btn-secondary" id="buy-miner2">Kaufen</button>
-                  </div>
-               </div>
-            </div>
-            <div class="col">
-               <div class="card">
-                  <div class="card-body">
-                     <h5 class="card-title">Miner: 50 C/L</h5>
-                     <h6 class="card-subtitle mb-2 text-muted">+50 Cookies per Level pro Sekunde</h6>
-                     <p class="card-text">
-                        Preis: <span id="price-buy-miner3">50000</span> Cookies<br>
-                        Level: <span id="minerVal3">0</span>/100
-                     </p>
-                     <button type="button" class="btn btn-secondary" id="buy-miner3">Kaufen</button>
-                  </div>
-               </div>
-            </div>
+            <!--
+               <div class="accordion-item">
+                 <h2 class="accordion-header" id="headingThree">
+                   <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                     Accordion Item #3
+                   </button>
+                 </h2>
+                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                   <div class="accordion-body">
+                     <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                   </div>
+                 </div>
+               </div>-->
          </div>
          <br>
          <hr>
-         <h3>Verwalten</h3>
+         <h3 class="mt-5">Verwalten</h3>
          <div class="card text-center">
             <div class="card-header">
                Zurücksetzen
@@ -371,5 +406,6 @@
          </div>
          <button type="button" class="btn btn-secondary" id="cheat50000" hidden>Cheat 50000</button>
       </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
    </body>
 </html>
