@@ -4587,6 +4587,13 @@ fieldset:disabled .btn {
     background-color: #0d6efd;
     border-color: #0d6efd;
 }
+.list-group-item.running {
+    z-index: 2;
+    color: #fff;
+    background-color: #157347;
+    border-color: #0d6efd;
+}
+
 .list-group-item + .list-group-item {
     border-top-width: 0;
 }

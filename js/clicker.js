@@ -81,14 +81,54 @@ $(document).ready(function () {
             upgradePriceIncrease: 10000,
             maxLvl: 100,
             HTMLitemName: 'price-buy-miner3'
+        }, 
+        {
+            localStorageName: 'boosterValue', 
+            initialValueInLocalStorage: 1
+        }, 
+        {
+            localStorageName: 'booster1', 
+            // SCHEDULE TIME
+            initialValueInLocalStorage: 60,
+            boosterByTime: true,
+            boosterIdentity: 1,
+            HTMLBoosterLink: 'boosterItem1',
+            HTMLCounter: 'counterBoosterX3',
+            boosterMultiplicator: 3
+        }, 
+        {
+            localStorageName: 'booster2', 
+            // SCHEDULE TIME
+            initialValueInLocalStorage: 300,
+            boosterByTime: true,
+            boosterIdentity: 2,
+            HTMLBoosterLink: 'boosterItem2',
+            HTMLCounter: 'counterBoosterX5',
+            boosterMultiplicator: 5
+        }, 
+        {
+            localStorageName: 'booster3', 
+            // 1 = NO BOOST | 0 = BOOST
+            initialValueInLocalStorage: 1,
+            boosterIdentity: 3,
+            boosterByTime: false,
+            chance: 10000,
+            HTMLBoosterLink: 'boosterItem3',
+            HTMLCounter: 'counterBoosterX10',
+            boosterMultiplicator: 10
         }
     ]
 
     initializeLocalStorage();
     updateTextValues();
+    localStorage.setItem('boosterValue', 1);
 
     function getPageItemByLocalStorageName(nameInLocalStorage) {
         return pageItems.find(element => element.localStorageName === nameInLocalStorage);
+    }
+
+    function getPageItemByHTMLBoosterLink(htmlName) {
+        return pageItems.find(element => element.HTMLBoosterLink === htmlName);
     }
 
     function initializeLocalStorage() {
@@ -101,7 +141,13 @@ $(document).ready(function () {
 
     function updateTextValues() {
         pageItems.forEach((element) => {
-            $(`#${element.HTMLitemName}`).text(Number(localStorage.getItem(element.localStorageName)));
+            let textToSet = Number(localStorage.getItem(element.localStorageName));
+
+            if(element.localStorageName.localeCompare('upgradeVal') == 0) {
+                textToSet = Number(localStorage.getItem(element.localStorageName)) * Number(localStorage.getItem(getPageItemByLocalStorageName('boosterValue').localStorageName));
+            }            
+
+            $(`#${element.HTMLitemName}`).text(textToSet);
         });
     }
 
@@ -115,14 +161,27 @@ $(document).ready(function () {
     }
 
     function updateScore(score) {
+        score = score * Number(localStorage.getItem(getPageItemByLocalStorageName('boosterValue').localStorageName));
+
         pageItems.slice(0, 2).forEach((element) => {
             const currentValue = Number(localStorage.getItem(element.localStorageName));
             localStorage.setItem(element.localStorageName, currentValue + score);
         });
     }
 
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+      }
+
     $("#count-erhoehen").click(() => {
+        let booster3 = getPageItemByLocalStorageName('booster3');
+        let compareNumber = getRandomInt(booster3.chance);
         const updateValue = Number(localStorage.getItem('upgradeVal'));
+
+        if(2 > compareNumber && Number(localStorage.getItem(booster3.localStorageName)) != 0) {
+            localStorage.setItem(booster3.localStorageName, 0);
+        }
+
         updateScore(updateValue);
         updateTextValues();
     });
@@ -138,13 +197,14 @@ $(document).ready(function () {
 
     function buyButtonClickHandling(buttonID) {
         const upgradeItem = getPageItemByLocalStorageName(`upgrade${buttonID}Price`);
+        let price = localStorage.getItem(upgradeItem.localStorageName);
         const score = Number(localStorage.getItem(pageItems[0].localStorageName));
         
-        if (score < upgradeItem.upgradePriceIncrease) {
+        if (score < price) {
             return;
         }
 
-        localStorage.setItem(pageItems[0].localStorageName, score - upgradeItem.upgradePriceIncrease);
+        localStorage.setItem(pageItems[0].localStorageName, score - price);
         localStorage.setItem(upgradeItem.localStorageName, upgradeItem.upgradePriceIncrease + Number(localStorage.getItem(upgradeItem.localStorageName)));
         localStorage.setItem('upgradeVal', Number(localStorage.getItem('upgradeVal')) + upgradeItem.clickValueIncrease);
 
@@ -159,24 +219,25 @@ $(document).ready(function () {
     function buyMinerClickHandling(minerID) {
         const minerUpgradeItem = getPageItemByLocalStorageName(`upgradeMiner${minerID}`);
         const minerItem = getPageItemByLocalStorageName(`minerVal${minerID}`);
+        let price = localStorage.getItem(minerUpgradeItem.localStorageName);
         const score = Number(localStorage.getItem(pageItems[0].localStorageName));
 
-        if (score < minerUpgradeItem.upgradePriceIncrease || minerItem.initialValueInLocalStorage >= minerUpgradeItem.maxLvl) {
+        if (score < price || minerItem.initialValueInLocalStorage >= minerUpgradeItem.maxLvl) {
             return;
         }
 
-        localStorage.setItem(pageItems[0].localStorageName, score - minerUpgradeItem.upgradePriceIncrease);
+        localStorage.setItem(pageItems[0].localStorageName, score - price);
         localStorage.setItem(minerUpgradeItem.localStorageName, minerUpgradeItem.upgradePriceIncrease + Number(localStorage.getItem(minerUpgradeItem.localStorageName)));
-        localStorage.setItem(minerItem.localStorageName, minerItem.initialValueInLocalStorage + 1);
+        localStorage.setItem(minerItem.localStorageName, Number(localStorage.getItem(minerItem.localStorageName)) + 1);
 
         updateTextValues();
     }
 
     $("#buy-miner1, #buy-miner2, #buy-miner3").click((event) => {
-        const minerID = event.target.id.split('-')[2];
+        const minerID = event.target.id.slice(-1);
         buyMinerClickHandling(minerID);
     });
-
+    
     function minerWork() {
         pageItems.forEach((element) => {
             if (element.miner) {
@@ -185,8 +246,67 @@ $(document).ready(function () {
         });
 
         updateTextValues();
-        setTimeout(minerWork, 1000);
     }
 
-    minerWork();
+    function countBoosterTimerDown() {
+        pageItems.forEach((element) => {
+            if (element.boosterIdentity != null) {
+
+                let htmlItem = document.getElementById(element.HTMLBoosterLink);
+                let htmlCounter = document.getElementById(element.HTMLCounter);
+
+                let boosterCount = Number(localStorage.getItem(element.localStorageName));
+                
+                if(localStorage.getItem(element.localStorageName).localeCompare(0) == 0) {
+                    htmlItem.classList.add('active');
+                    htmlCounter.hidden = true;
+                    return;
+                } else {
+                    htmlCounter.hidden = false;
+                    htmlItem.classList.remove('active');
+                }
+
+                if(element.boosterIdentity == 3) {
+                    htmlCounter.hidden = true;
+                    return;
+                }
+
+                htmlCounter.textContent = boosterCount;
+
+                localStorage.setItem(element.localStorageName, boosterCount - 1);
+            }
+        });
+    }
+
+    $("#boosterItem1, #boosterItem2, #boosterItem3").click((event) => {
+        if(!event.target.classList.contains('active')) {
+            return;
+        }
+
+        // set class running when running booster
+        let boosterInPageItems = getPageItemByLocalStorageName('boosterValue');
+        let itemInPageItems = getPageItemByHTMLBoosterLink(event.target.id);
+
+        localStorage.setItem(boosterInPageItems.localStorageName, Number(localStorage.getItem(boosterInPageItems.localStorageName)) + Number(itemInPageItems.boosterMultiplicator) - 1);
+
+        event.target.classList.remove('active');
+        event.target.classList.add('running');
+
+        localStorage.setItem(itemInPageItems.localStorageName, Number(itemInPageItems.initialValueInLocalStorage) + 5);
+
+        setTimeout(() => {
+            event.target.classList.remove('active');
+            localStorage.setItem(boosterInPageItems.localStorageName, Number(localStorage.getItem(boosterInPageItems.localStorageName)) - itemInPageItems.boosterMultiplicator + 1)
+            event.target.classList.remove('running');
+        }, 5000);
+    });
+
+    function scheduleInMilliseconds() {
+        minerWork();
+        countBoosterTimerDown();
+
+        setTimeout(scheduleInMilliseconds, 1000);
+    }
+
+    scheduleInMilliseconds();
 });
