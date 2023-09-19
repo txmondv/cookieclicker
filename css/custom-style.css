@@ -9,7 +9,7 @@
 }
 
 .tWhite:hover {
-    cursor: crosshair;
+    cursor: pointer;
     color: #25c77b;
 }
 

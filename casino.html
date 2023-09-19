@@ -7,6 +7,7 @@
     <title>Cookie Clicker</title>
     <link href="css/bootstrap-5.css" rel="stylesheet">
     <link rel="stylesheet" href="css/custom-style.css">
+    <link rel="stylesheet" href="css/casino.css">
 </head>
 
 <body>
@@ -38,41 +39,96 @@
             </ol>
         </nav>
         <div class="row mt-4">
-            <div class="card">
-                <div class="card-header">
-                    Cookie-Flip
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        Dashboard
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Cookies: <span id="cookies">0</span></h5>
+                        <p class="card-text">
+                            Cookies (ges.): <span id="totalCookies">0</span><br>
+                        </p>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">Alles oder Nichts!</h5>
-                    <p class="card-text">Setze einen Betrag an Cookies, den du flippen möchtest. Entweder wird dieser
-                        verdoppelt oder alles ist weg!</p>
-
-                    <form>
-                        <div class="mb-3">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        Cookie-Flip
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Alles oder Nichts!</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Klicke auf den Keks um zu drehen!</h6>
+                        <div class="mb-4">
                             <label for="cookieFlipEinsatz" class="form-label">Einsatz</label>
                             <input type="number" id="cookieFlipEinsatz" class="form-control"
                                 aria-describedby="cookieFlipEinsatzHelp">
-                            <div id="cookieFlipEinsatzHelp" class="form-text">
-                                Gib eine Zahl im Bereich deiner Cookies ein!
-                            </div>
                         </div>
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
-                            <label class="form-check-label" for="exampleCheck1">Ich habe verstanden, dass die gesetzten
-                                Cookies im Falle einer Niederlage für immer weg sind!</label>
+                        <h6 id="resultDiv" class="card-subtitle mb-5 text-muted"></h6>
+    
+                        <div id="coin">
+                            <div class="side-a"></div>
+                            <div class="side-b"></div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Setzen!</button>
-                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header">
+                        Wheel of Cookies
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Wheel of Cookies.</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Gib einen Wert ein, damit das Glücksrad erscheint. Du kannst deinen Einsatz bis zu 15x zurück erhalten!</h6>
+                        <div class="mb-4">
+                            <label for="wheelOfCookies" class="form-label">Einsatz</label>
+                            <input type="number" id="wheelOfCookies" onkeyup="calculacteWinnings(this);"  class="form-control"
+                                aria-describedby="wheelOfCookiesHelp">
+                        </div>
+                        <input type="button"id='spin' class="btn btn-primary" value="Drehen!" />
+    
+                        <canvas hidden id="canvas" width="500" height="500" style="width:60%;
+                        display: table;
+      margin: 0 auto;"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
 
+        
 
+
+    </div>
+    
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="notEnoughCoins" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Nicht genug Cookies!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Leider hast du dazu nicht genug Cookies! Gehe zur Startseite und erklicke dir mehr oder verringere den Einsatz! 
+            </div>
+        </div>
+        <div id="invalidInput" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Ungültige Eingabe!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Deine Eingabe kann so leider nicht verarbeitet werden. Bitte überprüfe diese und versuche es erneut!
+            </div>
+        </div>
     </div>
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap-5.js"></script>
-    <script src="js/clicker.js"></script>
+    <script src="js/casino.js"></script>
 </body>
 
 </html>
