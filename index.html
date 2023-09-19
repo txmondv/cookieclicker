@@ -5,13 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cookie Clicker</title>
-    <link rel="stylesheet" href="css/custom-style.css">
     <link href="css/bootstrap-5.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/custom-style.css">
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container">
+          <a class="navbar-brand tSpecialWhite">Cookie Clicker</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link tWhite active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link tWhite" href="casino.html">Casino</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     <div class="container">
-        <h1 class="my-heading mt-3">Cookie Clicker</h1>
         <div class="row mt-4">
             <div class="col-9">
                 <div class="card">
@@ -165,6 +182,18 @@
         </div>
         <button type="button" class="btn btn-secondary" id="cheat50000" hidden>Cheat 50000</button>
     </div>
+
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+          <div class="toast-header">
+            <strong class="me-auto">Boost!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            Dir wurde ein x10-Boost gutgeschrieben!
+          </div>
+        </div>
+      </div>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap-5.js"></script>
     <script src="js/clicker.js"></script>

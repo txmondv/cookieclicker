@@ -1,0 +1,36 @@
+.tWhite {
+    color: white;
+    text-decoration: none;
+}
+
+.tWhite .active {
+    color: #25c77b;
+    text-decoration: none;
+}
+
+.tWhite:hover {
+    cursor: crosshair;
+    color: #25c77b;
+}
+
+.tWhite:focus {
+    color: #25c77b;
+}
+
+.tSpecialWhite {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    user-select: none;
+}
+
+.tSpecialWhite:hover {
+    color: white;
+    text-decoration: none;
+    cursor: default;
+}
+
+.tBreadcrumb {
+    color: #187d4e;
+    text-decoration: none;
+}

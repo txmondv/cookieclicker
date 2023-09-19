@@ -112,7 +112,7 @@ $(document).ready(function () {
             initialValueInLocalStorage: 1,
             boosterIdentity: 3,
             boosterByTime: false,
-            chance: 10000,
+            chance: 7500,
             HTMLBoosterLink: 'boosterItem3',
             HTMLCounter: 'counterBoosterX10',
             boosterMultiplicator: 10
@@ -180,6 +180,7 @@ $(document).ready(function () {
 
         if(2 > compareNumber && Number(localStorage.getItem(booster3.localStorageName)) != 0) {
             localStorage.setItem(booster3.localStorageName, 0);
+            toastBootstrap.show();
         }
 
         updateScore(updateValue);
@@ -313,4 +314,7 @@ $(document).ready(function () {
     }
 
     scheduleInMilliseconds();
+
+    const toastLiveExample = document.getElementById('liveToast')
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
 });
