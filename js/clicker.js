@@ -222,7 +222,7 @@ $(document).ready(function () {
         let price = localStorage.getItem(minerUpgradeItem.localStorageName);
         const score = Number(localStorage.getItem(pageItems[0].localStorageName));
 
-        if (score < price || minerItem.initialValueInLocalStorage >= minerUpgradeItem.maxLvl) {
+        if (score < price || Number(localStorage.getItem(minerItem.localStorageName)) >= minerUpgradeItem.maxLvl) {
             return;
         }
 
