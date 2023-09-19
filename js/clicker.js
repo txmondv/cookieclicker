@@ -271,6 +271,10 @@ $(document).ready(function () {
                     return;
                 }
 
+                if(localStorage.getItem(element.localStorageName) > element.initialValueInLocalStorage) {
+                    htmlCounter.hidden = true;
+                }
+
                 htmlCounter.textContent = boosterCount;
 
                 localStorage.setItem(element.localStorageName, boosterCount - 1);
