@@ -68,7 +68,7 @@
                                 aria-describedby="cookieFlipEinsatzHelp">
                         </div>
                         <h6 id="resultDiv" class="card-subtitle mb-5 text-muted"></h6>
-    
+
                         <div id="coin">
                             <div class="side-a"></div>
                             <div class="side-b"></div>
@@ -83,14 +83,15 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Wheel of Cookies.</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Gib einen Wert ein, damit das Glücksrad erscheint. Du kannst deinen Einsatz bis zu 15x zurück erhalten!</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Gib einen Wert ein, damit das Glücksrad erscheint. Du
+                            kannst deinen Einsatz bis zu 15x zurück erhalten!</h6>
                         <div class="mb-4">
                             <label for="wheelOfCookies" class="form-label">Einsatz</label>
-                            <input type="number" id="wheelOfCookies" onkeyup="calculacteWinnings(this);"  class="form-control"
-                                aria-describedby="wheelOfCookiesHelp">
+                            <input type="number" id="wheelOfCookies" onkeyup="calculacteWinnings(this);"
+                                class="form-control" aria-describedby="wheelOfCookiesHelp">
                         </div>
-                        <input type="button"id='spin' class="btn btn-primary" value="Drehen!" />
-    
+                        <input type="button" id='spin' class="btn btn-primary" value="Drehen!" />
+
                         <canvas hidden id="canvas" width="500" height="500" style="width:60%;
                         display: table;
       margin: 0 auto;"></canvas>
@@ -98,12 +99,37 @@
                 </div>
             </div>
         </div>
+        <div class="row mt-4">
+            <div class="col">
+                <div class="card rouletteCont">
+                    <div class="card-header">
+                        Roulette
+                    </div>
+                    <div class="card-body roulleteOuter">
+                        <div class="iframe-container">
+                            <iframe src="roulette.html" id="roulleteCont"></iframe>
+                        </div>
+                    </div>
 
+                    <div class="d-flex justify-content-center mb-1">
+                        <p><strong>Cookies umwandeln</strong> (1 Mio. Cookies -> 1 Chip)</p>
+                    </div>
+                    <div class="d-flex justify-content-center mb-4">
+                        <div class="form-outline me-3" style="width: 14rem">
+                            <input type="Number" min="0" id="cookieExchangeInput" class="form-control" />
+                        </div>
+                        <button type="button" onclick="exchangeCoins()" class="btn btn-primary">Umwandeln</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         
 
 
+
     </div>
-    
+
 
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
         <div id="notEnoughCoins" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -112,7 +138,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                Leider hast du dazu nicht genug Cookies! Gehe zur Startseite und erklicke dir mehr oder verringere den Einsatz! 
+                Leider hast du dazu nicht genug Cookies! Gehe zur Startseite und erklicke dir mehr oder verringere den
+                Einsatz!
             </div>
         </div>
         <div id="invalidInput" class="toast" role="alert" aria-live="assertive" aria-atomic="true">

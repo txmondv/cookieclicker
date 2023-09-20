@@ -28,9 +28,9 @@
   }
 
   .side-b {
-    background-image: url("../media/img/burned-cookie.png");
-    background-size: 110%;
-    background-position: center;
+      background-image: url("../media/img/burned-cookie.png");
+      background-size: 110%;
+      background-position: center;
   }
 
   #coin {
@@ -95,5 +95,35 @@
   }
 
 
+  #roulleteCont {
+    width: 100%;
+    height: 80vh;
+    min-width: 100%;
+    min-height: 80vh;
+    border-radius: 40px;
+    border: none;
+    display: block; /* Ensure the iframe behaves as a block element */
+}
 
-  
+.roulleteOuter {
+    /* You can remove the height and width properties from this class as they are not needed */
+    min-width: 100%;
+}
+
+.card-body {
+    /* Optionally, you can set a maximum width for the iframe container */
+    max-width: 100%; /* Adjust this value as needed */
+    margin: 0 auto; /* Center the iframe horizontally within the card-body */
+}
+
+/* Ensure that the body and HTML of the iframe content also take up 100% height */
+iframe#roulleteCont {
+    width: 100%;
+    height: 100%;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+

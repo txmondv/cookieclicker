@@ -25,7 +25,7 @@ jQuery(document).ready(function ($) {
             return;
         }
 
-        if(!validateHasEnoughScore(Number(einsatz))) {
+        if (!validateHasEnoughScore(Number(einsatz))) {
             notEnoughCoinsToast.show();
             return;
         }
@@ -68,7 +68,7 @@ function updateScore(scoreToAdd, isAddingAction) {
     scoreToAdd = Number(scoreToAdd);
 
     localStorage.setItem('score', Number(localStorage.getItem('score')) + scoreToAdd);
-    if(isAddingAction) {
+    if (isAddingAction) {
         localStorage.setItem('totalCookies', Number(localStorage.getItem('totalCookies')) + scoreToAdd);
     }
 
@@ -101,7 +101,7 @@ function validateEinsatz(einsatz) {
 function validateHasEnoughScore(neededScore) {
     let userScore = Number(localStorage.getItem('score'));
 
-    if(neededScore <= userScore) {
+    if (neededScore <= userScore) {
         return true;
     } else {
         return false;
@@ -120,12 +120,12 @@ function calculacteWinnings(inputField) {
         return;
     }
 
-    if(!validateHasEnoughScore(Number(einsatz))) {
+    if (!validateHasEnoughScore(Number(einsatz))) {
         notEnoughCoinsToast.show();
         return;
     }
 
-    if(wheelSpinning) {
+    if (wheelSpinning) {
         return;
     }
 
@@ -135,13 +135,13 @@ function calculacteWinnings(inputField) {
     options = [];
 
     let i = 0;
-    while(i < 16) {
-        if(i % 2 == 0) {
+    while (i < 16) {
+        if (i % 2 == 0) {
             options.push(0);
         } else {
             options.push(einsatz * i);
         }
-        
+
         i++
     }
 
@@ -249,14 +249,14 @@ function spin() {
         return;
     }
 
-    if(!validateHasEnoughScore(Number(einsatz))) {
+    if (!validateHasEnoughScore(Number(einsatz))) {
         notEnoughCoinsToast.show();
         return;
     }
 
     notEnoughCoinsToast.hide();
 
-    if(wheelSpinning) {
+    if (wheelSpinning) {
         return;
     }
 
@@ -299,4 +299,33 @@ function easeOut(t, b, c, d) {
     var ts = (t /= d) * t;
     var tc = ts * t;
     return b + c * (tc + -3 * ts + 3 * t);
+}
+
+function exchangeCoins() {
+    let cookieExchangeInput = document.getElementById('cookieExchangeInput');
+    let input = cookieExchangeInput.value;
+
+    let einsatzValid = validateEinsatz(input);
+
+    if (!einsatzValid) {
+        invalidInputToast.show()
+        return;
+    }
+
+    let abzug = input * 1000000;
+
+    if (!validateHasEnoughScore(Number(abzug))) {
+        notEnoughCoinsToast.show();
+        return;
+    }
+
+    updateScore(-abzug, false);
+
+    invalidInputToast.hide();
+    notEnoughCoinsToast.hide();
+
+    localStorage.setItem('bank', Number(localStorage.getItem('bank')) + Number(input));
+    cookieExchangeInput.value = "";
+
+    window.location.reload();
 }
