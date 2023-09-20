@@ -125,6 +125,10 @@ function calculacteWinnings(inputField) {
         return;
     }
 
+    if(wheelSpinning) {
+        return;
+    }
+
     invalidInputToast.hide();
     notEnoughCoinsToast.hide();
 
