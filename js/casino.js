@@ -139,7 +139,7 @@ function calculacteWinnings(inputField) {
         if (i % 2 == 0) {
             options.push(0);
         } else {
-            options.push(einsatz * i);
+            options.push(Math.abs((einsatz) * (i-7)));
         }
 
         i++
