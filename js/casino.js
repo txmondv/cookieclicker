@@ -123,7 +123,7 @@ function calculacteWinnings(inputField) {
         return;
     }
 
-    einsatz = Math.floor(Number(einsatz))
+    einsatz = Math.round(einsatz)
 
     if (!validateHasEnoughScore(Number(einsatz))) {
         notEnoughCoinsToast.show();
