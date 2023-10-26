@@ -112,7 +112,7 @@ $(document).ready(function () {
             initialValueInLocalStorage: 1,
             boosterIdentity: 3,
             boosterByTime: false,
-            chance: 7500,
+            chance: 4500,
             HTMLBoosterLink: 'boosterItem3',
             HTMLCounter: 'counterBoosterX10',
             boosterMultiplicator: 10
