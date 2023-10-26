@@ -4,6 +4,9 @@ const invalidInputToast = bootstrap.Toast.getOrCreateInstance(invalidInputHTMLEl
 const notEnoughCoinsHTMLElement = document.getElementById('notEnoughCoins')
 const notEnoughCoinsToast = bootstrap.Toast.getOrCreateInstance(notEnoughCoinsHTMLElement)
 
+const tooManyCoinsHTMLElement = document.getElementById('tooManyCoins')
+const tooManyCoinsToast = bootstrap.Toast.getOrCreateInstance(tooManyCoinsHTMLElement)
+
 jQuery(document).ready(function ($) {
     updateScore(0, false);
     let cookieFlipSpinning = false;
@@ -125,6 +128,11 @@ function calculacteWinnings(inputField) {
         return;
     }
 
+    if(Number(einsatz) > 1000000) {
+        tooManyCoinsToast.show();
+        einsatz = 100000;
+    }
+
     if (wheelSpinning) {
         return;
     }
@@ -139,7 +147,7 @@ function calculacteWinnings(inputField) {
         if (i % 2 == 0) {
             options.push(0);
         } else {
-            options.push(Math.abs((einsatz) * (i-7)));
+            options.push(Math.abs((einsatz / 6) * (i)));
         }
 
         i++
