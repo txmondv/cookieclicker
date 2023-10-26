@@ -130,7 +130,7 @@ function calculacteWinnings(inputField) {
         return;
     }
 
-    if(Number(einsatz) > 100000) {
+    if(Number(einsatz) > 1000000) {
         tooManyCoinsToast.show();
         return;
     }
@@ -150,7 +150,7 @@ function calculacteWinnings(inputField) {
         if (i % 2 == 0) {
             options.push(0);
         } else {
-            options.push(Math.round((einsatz / 6) * (i)));
+            options.push(Math.round((einsatz / 5) * (i)));
         }
 
         i++
