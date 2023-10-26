@@ -130,9 +130,9 @@ function calculacteWinnings(inputField) {
         return;
     }
 
-    if(Number(einsatz) > 1000000) {
+    if(Number(einsatz) > 100000) {
         tooManyCoinsToast.show();
-        einsatz = 100000;
+        return;
     }
 
     if (wheelSpinning) {
@@ -141,6 +141,7 @@ function calculacteWinnings(inputField) {
 
     invalidInputToast.hide();
     notEnoughCoinsToast.hide();
+    tooManyCoinsToast.hide();
 
     options = [];
 
