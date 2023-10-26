@@ -149,7 +149,7 @@ function calculacteWinnings(inputField) {
         if (i % 2 == 0) {
             options.push(0);
         } else {
-            options.push(Math.abs((einsatz / 6) * (i)));
+            options.push(Math.round((einsatz / 6) * (i)));
         }
 
         i++
