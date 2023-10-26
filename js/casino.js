@@ -114,6 +114,8 @@ function validateHasEnoughScore(neededScore) {
 
 var options = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+let maxCoinsToBet = 5000000;
+
 function calculacteWinnings(inputField) {
     let einsatz = inputField.value;
     let einsatzValid = validateEinsatz(einsatz);
@@ -130,8 +132,9 @@ function calculacteWinnings(inputField) {
         return;
     }
 
-    if(Number(einsatz) > 1000000) {
+    if(Number(einsatz) > maxCoinsToBet) {
         tooManyCoinsToast.show();
+        inputField.value = maxCoinsToBet;
         return;
     }
 
